@@ -2,7 +2,7 @@
     <div id="product-list-two">
         <h1>Product List Two</h1>
         <ul>
-            <li  v-for="detum in data" :key="detum.name">
+            <li  v-for="detum in saleProducts" :key="detum.name">
                 <span>{{detum.name}}</span>
                  <span class="price">{{detum.price}}</span>
             </li>
@@ -15,6 +15,9 @@ export default {
     computed: {
         data() {
             return this.$store.state.products
+        },
+        saleProducts() {
+            return this.$store.getters.saleProducts;
         }
     }
 }

@@ -7,7 +7,7 @@
             </li>
         </ul>
 
-        
+        <button @click="reducePrice(4)">Apply Discount Coupon</button>
     </div>
     
 </template>
@@ -16,19 +16,20 @@
 
     export default {
         methods: {
-            
+            reducePrice(val) {
+                // this.$store.state.products.forEach(product => {
+                //     product.price -=1;
+                // });
+
+                this.$store.dispatch('reducePrice',val);
+            }
         },
         computed: {
             data() {
                 return this.$store.state.products;
             },
             saleProducts() {
-               return this.$store.state.products.map(product => {
-                    return {
-                        name: '**' + product.name + '**',
-                        price: product.price/2
-                    }
-                });
+                return this.$store.getters.saleProducts;
             }
             
         }
